@@ -12,7 +12,7 @@ import "./App.css";
 
 export default function App() {
   const [publicKey, setPublickey] = useState();
- 
+  const [connected, setConnected] = useState(false);
   const [chainId, setChainId] = useState();
   const [msg, setMsg] = useState();
   const [notice, setNotice] = useState();
@@ -28,6 +28,7 @@ export default function App() {
       setChainId(chainId);
       setPublickey(accounts[0]);
       await readNotice(provider);
+      setConnected(true);
     } else {
       setMsg("Install MetaMask");
     }
@@ -53,10 +54,10 @@ export default function App() {
     console.log(updatedNotice)
     let tx = await contract.setNotice(updatedNotice, {
       gasLimit: 1000000000, // BlockGasLimit / 10
-  });
+    });
 
-  console.log(tx)
-  await readNotice(provider);
+    console.log(tx)
+    await readNotice(provider);
   }
 
   return (
@@ -66,7 +67,7 @@ export default function App() {
           <Navbar.Brand>
             Notice Board
           </Navbar.Brand>
-          <Button variant="light" onClick={connectButton}>Connect Wallet</Button>
+          {!connected && <Button variant="light" onClick={connectButton}>Connect Wallet</Button>}
         </Container>
       </Navbar>
 

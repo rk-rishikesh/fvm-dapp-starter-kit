@@ -1,5 +1,6 @@
 {
   "name": "fevm-dapp-starter-kit",
+  "author": "Rishikesh Kale",
   "version": "1.0.0",
   "description": "Starter kit for building Dapp on FEVM",
   "main": "index.js",
@@ -8,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rk-rishikesh/FEVM-Dapp-Starter-Kit.git"
+    "url": "git+https://github.com/rk-rishikesh/fvm-dapp-starter-kit.git"
   },
   "author": "Rishikesh Kale",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rk-rishikesh/FEVM-Dapp-Starter-Kit/issues"
+    "url": "https://github.com/rk-rishikesh/fvm-dapp-starter-kit/issues"
   },
-  "homepage": "https://github.com/rk-rishikesh/FEVM-Dapp-Starter-Kit#readme",
+  "homepage": "https://github.com/rk-rishikesh/fvm-dapp-starter-kit#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
     "hardhat": "^2.12.0"

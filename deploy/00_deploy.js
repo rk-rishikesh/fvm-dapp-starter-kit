@@ -10,20 +10,20 @@ const DEPLOYER_PRIVATE_KEY = network.config.accounts[0];
 
 async function callRpc(method, params) {
   var options = {
-    method: "POST",
-    url: "https://wallaby.node.glif.io/rpc/v0",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      jsonrpc: "2.0",
-      method: method,
-      params: params,
-      id: 1,
-    }),
-  };
-  const res = await request(options);
-  return JSON.parse(res.body).result;
+      method: "POST",
+      url: "https://api.hyperspace.node.glif.io/rpc/v1",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: method,
+          params: params,
+          id: 1,
+      }),
+  }
+  const res = await request(options)
+  return JSON.parse(res.body).result
 }
 
 const deployer = new ethers.Wallet(DEPLOYER_PRIVATE_KEY);
@@ -31,25 +31,29 @@ const deployer = new ethers.Wallet(DEPLOYER_PRIVATE_KEY);
 module.exports = async ({ deployments }) => {
   const { deploy } = deployments;
 
-  console.log(deployer.address);
   const priorityFee = await callRpc("eth_maxPriorityFeePerGas");
-  const f4Address = fa.newDelegatedEthAddress(deployer.address).toString();
-  const nonce = await callRpc("Filecoin.MpoolGetNonce", [f4Address]);
-  console.log("Nonce : ", nonce)
-  console.log("Wallet Ethereum Address:", deployer.address);
-  console.log("Wallet f4Address: ", f4Address)
 
-  await deploy("NoticeBoard", {
+  // Wraps Hardhat's deploy, logging errors to console.
+  const deployLogError = async (title, obj) => {
+    let ret;
+    try {
+        ret = await deploy(title, obj);
+    } catch (error) {
+        console.log(error.toString())
+        process.exit(1)
+    }
+    return ret;
+  }
+
+  console.log("Wallet Ethereum Address:", deployer.address)
+
+  await deployLogError("NoticeBoard", {
     from: deployer.address,
     args: [],
-    // since it's difficult to estimate the gas before f4 address is launched, it's safer to manually set
-    // a large gasLimit. This should be addressed in the following releases.
-    gasLimit: 1000000000, // BlockGasLimit / 10
-    // since Ethereum's legacy transaction format is not supported on FVM, we need to specify
     // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
     maxPriorityFeePerGas: priorityFee,
-    nonce: nonce,
     log: true,
-  });
+  })
+  
 };
 module.exports.tags = ["NoticeBoard"];
