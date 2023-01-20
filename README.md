@@ -6,7 +6,7 @@
 ```
 ### Install node modules
 ```bash
-  cd FEVM-Dapp-Starter-Kit
+  cd fvm-dapp-starter-kit
   
   npm install
 ```
