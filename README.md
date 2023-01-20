@@ -30,6 +30,7 @@ Deposit some tFIL to your deployment account from hyperspace faucet - https://hy
 ### Install node modules inside client folder
 ```bash
   cd client
+  
   npm install
 ```
 
