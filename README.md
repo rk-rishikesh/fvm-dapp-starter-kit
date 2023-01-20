@@ -24,7 +24,7 @@ Deposit some tFIL to your deployment account from wallaby faucet - https://walla
   npx hardhat deploy
 ```
 
-> Note the contract address and locate the contract ABI under deployments folder and replace it inside the contants file under client folder.
+> 📢 Note the contract address and locate the contract ABI under deployments folder and replace it inside the contants file under client folder.
 
 ### Install node modules inside client folder
 ```bash
@@ -36,4 +36,7 @@ Deposit some tFIL to your deployment account from wallaby faucet - https://walla
 
 ```bash
   npm run start
+```
+![image](https://user-images.githubusercontent.com/59107121/213632197-57ae640e-d20f-4c00-84f8-e103330e0b59.png)
+
 ```
