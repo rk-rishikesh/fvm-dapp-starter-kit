@@ -2,7 +2,7 @@
 
 ### Clone the project
 ```bash
-  git clone https://github.com/rk-rishikesh/FEVM-Dapp-Starter-Kit.git
+  git clone https://github.com/rk-rishikesh/fvm-dapp-starter-kit.git
 ```
 ### Install node modules
 ```bash
