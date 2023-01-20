@@ -17,7 +17,7 @@ Add your deployment account private key in hardhat config file.
   npx hardhat compile
 ```
 ### Fund deployment account
-Deposit some tFIL to your deployment account from wallaby faucet - https://wallaby.network/
+Deposit some tFIL to your deployment account from hyperspace faucet - https://hyperspace.yoga/#faucet
 
 ### Deploy the Smart Contracts on Wallaby Testnet
 ```bash
